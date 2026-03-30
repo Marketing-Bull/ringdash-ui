@@ -1,0 +1,306 @@
+:root {
+  --bg: #0f1117;
+  --card: #1a1d27;
+  --card-hover: #21253a;
+  --border: #2a2d3d;
+  --text: #e2e4f0;
+  --text-dim: #6b6f82;
+  --accent: #6c63ff;
+  --accent-dim: #4c42b4;
+  --green: #34d399;
+  --yellow: #fbbf24;
+  --red: #f87171;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* Login */
+.login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.login-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-card h1 { font-size: 28px; margin-bottom: 4px; }
+.subtitle { color: var(--text-dim); margin-bottom: 32px; font-size: 14px; }
+
+.login-card form { display: flex; flex-direction: column; gap: 12px; }
+
+.login-card input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+}
+
+.login-card input:focus { border-color: var(--accent); }
+
+.login-card button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.login-card button:hover { background: var(--accent-dim); }
+.login-card button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.toggle {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+.toggle:hover { color: var(--accent); }
+
+.error {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid var(--red);
+  color: var(--red);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  height: 60px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo { font-size: 18px; font-weight: 700; margin-right: 32px; }
+
+.nav-links { display: flex; gap: 4px; flex: 1; }
+
+.nav-links button {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav-links button:hover { color: var(--text); background: var(--card-hover); }
+.nav-links button.active { color: var(--accent); background: rgba(108,99,255,0.1); }
+
+.nav-user { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text-dim); }
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.logout-btn:hover { border-color: var(--red); color: var(--red); }
+
+/* Content */
+.content { padding: 32px; max-width: 1200px; margin: 0 auto; }
+
+/* Dashboard */
+.dashboard h2 { font-size: 20px; margin-bottom: 20px; font-weight: 600; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.card-label { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+
+.card-value { font-size: 32px; font-weight: 700; color: var(--accent); }
+
+.refresh-row { display: flex; justify-content: flex-end; }
+
+.refresh-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.refresh-btn:hover { color: var(--text); border-color: var(--text-dim); }
+
+/* Calls */
+.calls-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.calls-header h2 { font-size: 20px; font-weight: 600; }
+
+.empty {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 48px;
+  text-align: center;
+  color: var(--text-dim);
+}
+
+.empty small { display: block; margin-top: 8px; font-size: 12px; }
+
+.calls-table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+
+.calls-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  background: var(--card-hover);
+  border-bottom: 1px solid var(--border);
+}
+
+.calls-table td {
+  padding: 14px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.calls-table tr:last-child td { border-bottom: none; }
+.calls-table tr:hover td { background: var(--card-hover); }
+
+.status {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status.completed { background: rgba(52,211,153,0.1); color: var(--green); }
+.status.missed { background: rgba(248,113,113,0.1); color: var(--red); }
+.status.answered { background: rgba(52,211,153,0.1); color: var(--green); }
+.status.initiated { background: rgba(251,191,36,0.1); color: var(--yellow); }
+.status.no-answer { background: rgba(248,113,113,0.1); color: var(--red); }
+.status.busy { background: rgba(248,113,113,0.1); color: var(--red); }
+.status.failed { background: rgba(248,113,113,0.1); color: var(--red); }
+.status.canceled { background: rgba(107,111,130,0.1); color: var(--text-dim); }
+
+/* Badge */
+.badge {
+  background: var(--red);
+  color: white;
+  border-radius: 10px;
+  padding: 1px 6px;
+  font-size: 11px;
+  margin-left: 4px;
+}
+
+/* Callback card highlight */
+.callback-card .card-value { color: var(--red); }
+
+/* Callback list */
+.callback-list { display: flex; flex-direction: column; gap: 12px; }
+
+.callback-card-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.callback-info { flex: 1; }
+
+.callback-number { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+
+.callback-meta { display: flex; gap: 12px; align-items: center; font-size: 13px; color: var(--text-dim); }
+
+.callback-time { font-weight: 600; color: var(--red); }
+
+.called-back-btn {
+  background: var(--green);
+  color: #0a1a10;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.called-back-btn:hover { opacity: 0.85; }
+
+.callback-date { font-size: 12px; color: var(--text-dim); margin-left: 8px; }
+
+/* Caller info cells */
+.caller-cell { display: flex; flex-direction: column; gap: 2px; }
+.caller-name { font-weight: 600; }
+.caller-number { font-size: 12px; color: var(--text-dim); }
+
+.carrier-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.carrier-badge.mobile { background: rgba(52,211,153,0.1); color: var(--green); }
+.carrier-badge.landline { background: rgba(107,111,130,0.1); color: var(--text-dim); }
+.carrier-badge.voip { background: rgba(251,191,36,0.1); color: var(--yellow); }
+
+/* Answered By badges */
+.answered-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.answered-badge.human { background: rgba(52,211,153,0.1); color: var(--green); }
+.answered-badge.machine_start { background: rgba(251,191,36,0.1); color: var(--yellow); }
+.answered-badge.machine_end_beep { background: rgba(251,191,36,0.1); color: var(--yellow); }
+.answered-badge.unknown { background: rgba(107,111,130,0.1); color: var(--text-dim); }
+.answered-badge.fax { background: rgba(108,99,255,0.1); color: var(--accent); }
