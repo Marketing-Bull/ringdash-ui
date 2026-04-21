@@ -1,16 +1,42 @@
-# React + Vite
+# ringdash-ui
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite frontend for the [ringdash](https://github.com/Marketing-Bull/ringdash) call-analytics dashboard.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+cp .env.example .env.local   # then fill in VITE_API_BASE_URL
+npm install
+npm run dev
+```
 
-## React Compiler
+> **CORS requirement** — `VITE_API_BASE_URL` must point to a ringdash instance that includes this UI's origin in its `CORS_ORIGINS` env var. The two values must agree or the browser will block every request.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Environment variables
 
-## Expanding the ESLint configuration
+| Variable | Description |
+|---|---|
+| `VITE_API_BASE_URL` | Base URL of the ringdash API (e.g. `https://ringdash.example.com` or `http://localhost:8899`) |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## API surface consumed
+
+All requests use `Authorization: Bearer <token>` except `POST /api/auth/token`.
+
+| Method | Path | Purpose |
+|---|---|---|
+| `POST` | `/api/auth/token` | Login — body is `application/x-www-form-urlencoded` with `username` and `password`; returns `{ access_token }` |
+| `GET` | `/api/auth/me` | Fetch the current user |
+| `GET` | `/api/analytics/` | Summary stats (total calls, avg/total duration) |
+| `GET` | `/api/calls/?limit=200` | All calls, newest first |
+| `GET` | `/api/calls/callbacks` | Missed calls with pending callback status |
+| `PATCH` | `/api/calls/{id}/callback` | Mark a missed call as called back |
+
+### Creating users
+
+`POST /api/auth/register` requires an authenticated user (added in ringdash PR #2). There is no register UI. To create the first user, run on the server:
+
+```bash
+python scripts/create_user.py <username>
+```
+
+Subsequent users can be created by an already-logged-in admin hitting `POST /api/auth/register` with a Bearer token.
